@@ -1,0 +1,99 @@
+.topbar {
+  width: 100%;
+}
+
+.nav-button-group {
+  
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.top-section {
+  margin: auto;
+  box-sizing: border-box;
+  padding: 0 10px 0;
+}
+.bottom-section {
+
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.brand {
+  font-size: 2rem;
+  box-sizing: border-box;
+  text-decoration: none;
+  color: inherit;
+}
+
+.brand:hover {
+  color: inherit;
+}
+
+.dropdown-button {
+  border: none;
+  background-color: inherit;
+  color: inherit;
+  padding: 10px;
+}
+
+.offcanvas-body {
+  font-size: 1.5rem !important;
+}
+
+.search-input {
+  padding: 10px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.search-button {
+  background-color: rgb(77, 77, 150);
+  font-weight: 700;
+  color: #fff;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.nav-button {
+  background-color: inherit;
+  color: inherit;
+  font-size: 2rem;
+}
+.nav-link{
+  padding: 5px;
+  margin: 0 5px 0;
+  box-sizing: border-box;
+}
+
+.icon-button-text{ 
+  font-style: normal;
+}
+a:link {
+  text-decoration: none;
+}
+
+.offcanvas {
+  color: black;
+}
+
+.side-nav-link{
+  padding: 5px;
+  margin: 0 5px 0;
+  box-sizing: border-box;
+  border-bottom: 1px solid #000000;
+}
+
+.side-nav-link a {
+  color: #000000;
+}
+
+
+/* a:active {
+  font-weight: bold;
+} */

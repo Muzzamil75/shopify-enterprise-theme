@@ -1,0 +1,49 @@
+{{ 'featured-products.css' | asset_url | stylesheet_tag }}
+{{ 'item-slider.css' | asset_url | stylesheet_tag }}
+<div class="product-slider">
+  <div class="title">
+    {{ section.settings.title }}
+  </div>
+
+  {% render 'product-slider', productList: section.settings.products %}
+</div>
+
+<style></style>
+
+{% schema %}
+{
+  "name": "Featured Products",
+  "presets": [
+    {
+      "name": "Featured Products"
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Featured Products"
+    },
+    {
+      "type": "product_list",
+      "id": "products",
+      "label": "Products",
+      "limit": 12
+    },
+    {
+      "type": "color",
+      "id": "bg",
+      "label": "Background Color",
+      "default": "#33688C"
+    },
+
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Text Color",
+      "default": "#FFFFFF"
+    }
+  ]
+}
+{% endschema %}

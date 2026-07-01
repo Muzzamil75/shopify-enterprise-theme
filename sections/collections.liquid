@@ -1,0 +1,42 @@
+{{ 'collections.css' | asset_url | stylesheet_tag }}
+<div class="product-slider">
+  <div class="title">
+    {{ section.settings.title }}
+  </div>
+
+  {% render 'collection-slider', collectionList: collections %}
+</div>
+
+<style></style>
+
+{% schema %}
+{
+  "name": "All Collections",
+  "presets": [
+    {
+      "name": "All Collections"
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Shop All Categories"
+    },
+    {
+      "type": "color",
+      "id": "bg",
+      "label": "Background Color",
+      "default": "#33688C"
+    },
+
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Text Color ",
+      "default": "#FFFFFF"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,163 @@
+{{ 'product.css' | asset_url | stylesheet_tag }}
+
+<div class="container-fluid">
+  <div class="row" style="margin: auto;">
+    <div class="image-container col-12 col-md-6">
+      <div class="featured-image-container">
+        <img class="image-large" id="featured-image" src="{{product.featured_image | image_url}}" alt="">
+      </div>
+
+      <div class="images-row">
+        {% for image in product.images %}
+          <div class="thumbnail-image">
+            <img class="image-small" src="{{image | image_url}}" alt="">
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="product-description col-12 col-md-6">
+      <div class="title">
+        <h1>{{ product.title }}</h1>
+      </div>
+
+      <div
+        class="soldout"
+        id="soldout"
+        {% if product.available == true %}
+          style="display: none;"
+        {% endif %}
+      >
+        <span class="badge bg-danger">Sold Out</span>
+      </div>
+
+      <div class="price" id="price">{{ product.price | money }}</div>
+
+      <div class="options">
+        {% assign totalVariants = product.variants | size %}
+        {% if totalVariants > 1 -%}
+          {% for option in product.options -%}
+            <div class="option-name">{{ option }}</div>
+            <div class="button-group">
+              {%- for value in product.options_by_name[option].values %}
+                <div class="radio-button">
+                  <input
+                    type="radio"
+                    class="btn-check product-option"
+                    name="option_{{option}}"
+                    value="{{value}}"
+                    id="{{option}}_{{value}}"
+                    autocomplete="off"
+                    {% if value == product.options_by_name[option].selected_value %}
+                      checked
+                    {% endif %}
+                  >
+                  <label class="btn btn-outline-success" for="{{option}}_{{value}}">{{ value }}</label>
+                </div>
+              {%- endfor %}
+            </div>
+          {%- endfor %}
+        {%- endif %}
+      </div>
+
+      {% form 'product', product %}
+        <input type="text" name="id" hidden id="product-id">
+
+        <div class="input-row" style="margin: auto;">
+          <div class="quantity-text">Quantity</div>
+          <div class="input-button-group">
+            <button class="btn btn-secondary quantity-change" type="button" id="increment-quantity">
+              <i class="bi bi-plus"></i>
+            </button>
+
+            <input type="number" name="quantity" value="1" class="quantity-input" id="quantity-input">
+
+            <button class="btn btn-secondary quantity-change" type="button" id="decrement-quantity">
+              <i class="bi bi-dash"></i>
+            </button>
+          </div>
+        </div>
+
+        <button class="btn btn-secondary add-cart" id="add-to-cart" type="submit">
+          <i class="bi bi-cart-plus"></i>{{ 'general.add_to_cart' | translate }}
+        </button>
+
+        <button class="btn btn-secondary buy-now" type="submit">Buy Now</button>
+      {% endform %}
+      <div class="description">
+        {{ product.description }}
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" tabindex="-1" id="add-cart-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="modal-message">Add to cart response</div>
+          <div class="message-icon">
+            <i class="bi bi-check-circle" id="icon-success"></i>
+            <i class="bi bi-x-circle failed" id="icon-failure"></i>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Continue Shopping</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" tabindex="-1" id="spinner-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="modal-message">Updating Cart</div>
+          <div class="loader">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style></style>
+
+<script src="{{ 'product.js' | asset_url }}" defer="defer"></script>
+
+<script>
+  var options = [];
+
+  var options_values = {};
+
+  var variants = {{product.variants  | json}}
+
+  {% for variant in product.variants %}
+    {% assign index = forloop.index | minus: 1 %}
+
+    variants[{{index}}].price = "{{variant.price | money}}";
+  {% endfor %}
+
+
+  {% for option in product.options -%}
+
+    options.push("option_{{ option}}")
+
+    options_values["option_{{option}}"] = "{{ product.options_by_name[option].selected_value }}";
+
+  {%- endfor %}
+</script>
+
+{% schema %}
+{
+  "name": "Product Description",
+  "presets": [
+    {
+      "name": "Product Description"
+    }
+  ],
+  "settings": []
+}
+{% endschema %}

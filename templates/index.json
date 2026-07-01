@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "carousel": {
+      "type": "carousel"
+    },
+    "featured-collection": {
+      "type": "featured-collection"
+    },
+    "featured-products": {
+      "type": "featured-products"
+    },
+    "collections": {
+      "type": "collections"
+    }
+  },
+  "order": ["carousel", "featured-collection", "featured-products", "collections"]
+}

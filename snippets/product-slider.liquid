@@ -1,0 +1,11 @@
+<div class="items-row">
+  {% if maxItem %}
+    {% for product in productList limit: maxItem %}
+      {% render 'product-card', product: product %}
+    {% endfor %}
+  {% else %}
+    {% for product in productList %}
+      {% render 'product-card', product: product %}
+    {% endfor %}
+  {% endif %}
+</div>

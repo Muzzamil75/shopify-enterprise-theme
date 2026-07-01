@@ -1,0 +1,101 @@
+<div class="accordion filters" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingPrice">
+      <button
+        class="accordion-button"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapsePrice"
+        aria-expanded="true"
+        aria-controls="collapsePrice"
+      >
+        Price
+      </button>
+    </h2>
+    <div
+      id="collapsePrice"
+      class="accordion-collapse collapse show"
+      aria-labelledby="headingPrice"
+    >
+      <div class="accordion-body expand">
+        <div class="row" style="margin: auto;">
+          <div class="col-6 p-1">
+            <input class="price-input min-price" type="number" name="min-price" id="min-price" placeholder="From">
+          </div>
+          <div class="col-6 p-1">
+            <input class="price-input max-price" type="number" name="max-price" id="max-price" placeholder="To">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingAvailability">
+      <button
+        class="accordion-button"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseAvailability"
+        aria-expanded="true"
+        aria-controls="collapseAvailability"
+      >
+        Availability
+      </button>
+    </h2>
+    <div
+      id="collapseAvailability"
+      class="accordion-collapse collapse show"
+      aria-labelledby="headingAvailability"
+    >
+      <div class="accordion-body expand">
+        <div class="checkbox-group">
+          <div class="form-check">
+            <input class="form-check-input availability-input in-stock" type="checkbox" value="1" id="in-stock">
+            <label class="form-check-label" for="in-stock"> In Stock </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input availability-input out-of-stock" type="checkbox" value="0" id="out-of-stock">
+            <label class="form-check-label" for="out-of-stock"> Out Of Stock </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingTypes">
+      <button
+        class="accordion-button"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseTypes"
+        aria-expanded="true"
+        aria-controls="collapseTypes"
+      >
+        Types
+      </button>
+    </h2>
+    <div
+      id="collapseTypes"
+      class="accordion-collapse collapse show"
+      aria-labelledby="headingTypes"
+    >
+      <div class="accordion-body expand">
+        <div class="checkbox-group">
+          {% for type in collection.all_types %}
+            <div class="form-check">
+              <input
+                class="form-check-input product-type-input {{type}}"
+                type="checkbox"
+                value="{{type}}"
+                id="{{type}}"
+              >
+              <label class="form-check-label" for="{{type}}"> {{ type }} </label>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

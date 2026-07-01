@@ -1,0 +1,65 @@
+<div class="container-fluid">
+  <div class="title">
+    <h1>Sign Up</h1>
+  </div>
+  <div class="row-centered">
+    <div class="col-lg-4 col-md-6 col-12">
+      {% form 'create_customer' %}
+        {{ form.errors | default_errors }}
+
+        <div class="row">
+          <div class="col-md-6 col-12">
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="first_name"
+                placeholder="First Name"
+                name="customer[first_name]"
+              >
+              <label for="first_name">First Name</label>
+            </div>
+          </div>
+          <div class="col-md-6 col-12">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="last_name" placeholder="Last Name" name="customer[last_name]">
+              <label for="last_name">Last Name</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-floating mb-3">
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            aria-describedby="emailHelp"
+            placeholder="Enter email"
+            name="customer[email]"
+          >
+          <label for="email">Email Address</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="password" class="form-control" id="password" placeholder="Password" name="customer[password]">
+          <label for="password">Password</label>
+        </div>
+        <button type="submit" class="btn btn-danger container-fluid mb-3" value="Create">Sign Up</button>
+      {% endform %}
+
+      <p class="form-text text-muted mb-3 container text-center">Already have an account?</p>
+      <a href="{{ routes.account_login_url }}" type="button" class="btn btn-primary container-fluid">Login</a>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Sign Up",
+  "presets": [
+    {
+      "name": "Sign Up"
+    }
+  ],
+  "settings": []
+}
+{% endschema %}
