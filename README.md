@@ -4,4 +4,4 @@
 
 sudo shopify theme dev --store {store_name} 
 
-Ex : sudo shopify theme dev --store farhan-theme-dev
+Ex : sudo shopify theme dev --store muzzammil-theme-dev
